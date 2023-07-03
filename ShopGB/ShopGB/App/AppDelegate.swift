@@ -50,14 +50,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        return true
         
         
-        let change = requestFactory.makeChangeRequestFatory()
-        change.changeUserData(idUser: 123, userName: "Somebody", password: "mypassword", email: "some@some.ru", gender: "m", creditCard: "9872389-2424-234224-234", bio: "This is good! I think I will switch to another language") { response in
+//        let change = requestFactory.makeChangeRequestFatory()
+//        change.changeUserData(idUser: 123, userName: "Somebody", password: "mypassword", email: "some@some.ru", gender: "m", creditCard: "9872389-2424-234224-234", bio: "This is good! I think I will switch to another language") { response in
+//            switch response.result {
+//            case .success(let login):
+//                print(login)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//        return true
+        
+//        let reviews = requestFactory.makeReviewsRequestFactory()
+//        reviews.removeReview(idComment: 2) { response in
+//            switch response.result {
+//            case .success(let result):
+//                print(result)
+//            case .failure(let error):
+//               // print(String(describing: error))
+//                print(error.localizedDescription)
+//
+//            }
+//        }
+//        return true
+        
+//        let reviews = requestFactory.makeReviewsRequestFactory()
+//        reviews.add(idUser: 123, text: "Текст отзыва") { response in
+//            switch response.result {
+//            case .success(let result):
+//                print(result)
+//            case.failure(let error):
+//                print(error.localizedDescription)
+//
+//            }
+//
+//        }
+//        return true
+        
+        let reviews = requestFactory.makeReviewsRequestFactory()
+        reviews.remove(idComment: 123) { response in
             switch response.result {
-            case .success(let login):
-                print(login)
-            case .failure(let error):
+            case .success(let result):
+                print(result)
+            case.failure(let error):
                 print(error.localizedDescription)
+                
             }
+            
         }
         return true
     }

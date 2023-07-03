@@ -1,0 +1,14 @@
+//
+//  RemoveReviewResult.swift
+//  ShopGB
+//
+//  Created by Irina on 02.07.2023.
+//
+
+import Foundation
+
+struct RemoveReviewResult: Codable {
+    let result: Int
+    
+}
+
