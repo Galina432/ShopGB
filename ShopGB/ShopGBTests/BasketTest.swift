@@ -1,14 +1,15 @@
 //
-//  ReviewTestss.swift
+//  BasketTest.swift
 //  ShopGBTests
 //
-//  Created by Irina on 02.07.2023.
+//  Created by Irina on 05.07.2023.
+//
 
 import XCTest
 import Alamofire
 @testable import ShopGB
 
-class ReviewTests: XCTestCase {
+class BasketTest: XCTestCase {
     var requestFactory: RequestFactory!
     
     let expectation = XCTestExpectation(description: "Download https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")
@@ -27,10 +28,9 @@ class ReviewTests: XCTestCase {
     }
     
     
-    func testAddReviews() {
-        let factory = RequestFactory().makeReviewsRequestFactory()
-
-        factory.add(idUser: 123, text: "Текст отзыва") { [weak self] response in
+    func testAddBasket() {
+        let factory = RequestFactory().makeBasketRequestFactory()
+        factory.addToBasket(idProduct: 123, quantity: 1) { [weak self] response in
             switch response.result {
             case .success(let result):
                 XCTAssertEqual(result.result, 1)
@@ -42,10 +42,9 @@ class ReviewTests: XCTestCase {
         wait(for: [expectation], timeout: timeoutValue)
     }
     
-    func testRemoveReviews() {
-        let factory = RequestFactory().makeReviewsRequestFactory()
-        
-        factory.remove(idComment: 123) { [weak self] response in
+    func testRemoveBasket() {
+        let factory = RequestFactory().makeBasketRequestFactory()
+        factory.deleteFromBasket(idProduct: 123) { [weak self] response in
             switch response.result {
             case .success(let result):
                 XCTAssertEqual(result.result, 1)
@@ -56,4 +55,19 @@ class ReviewTests: XCTestCase {
         }
         wait(for: [expectation], timeout: timeoutValue)
     }
+    
+    func testPayBasket() {
+        let factory = RequestFactory().makeBasketRequestFactory()
+        factory.payBasket(totalCost: 1000) { [weak self] response in
+            switch response.result {
+            case .success(let result):
+                XCTAssertEqual(result.result, 1)
+            case .failure:
+                XCTFail()
+            }
+            self?.expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: timeoutValue)
+    }
+    
 }
