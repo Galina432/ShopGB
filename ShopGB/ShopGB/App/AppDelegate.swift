@@ -87,8 +87,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
 //        return true
         
-        let reviews = requestFactory.makeReviewsRequestFactory()
-        reviews.remove(idComment: 123) { response in
+//        let reviews = requestFactory.makeReviewsRequestFactory()
+//        reviews.remove(idComment: 123) { response in
+//            switch response.result {
+//            case .success(let result):
+//                print(result)
+//            case.failure(let error):
+//                print(error.localizedDescription)
+//
+//            }
+//
+//        }
+//        return true
+        
+//        let basket = requestFactory.makeBasketRequestFactory()
+//        basket.addToBasket(idProduct: 123, quantity: 1) { response in
+//            switch response.result {
+//            case .success(let result):
+//                print(result)
+//            case.failure(let error):
+//                print(error.localizedDescription)
+//
+//            }
+//
+//        }
+//        return true
+        
+        let basket = requestFactory.makeBasketRequestFactory()
+        basket.deleteFromBasket(idProduct: 123) { response in
             switch response.result {
             case .success(let result):
                 print(result)
